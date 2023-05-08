@@ -25,7 +25,7 @@ protected:
 
     std::string destination         = "";
 
-    std::string document            = "";
+    virtual void setDocument() const;
 
     virtual void executeImpl();
 
@@ -33,11 +33,18 @@ protected:
 
     virtual void act();
 
-    virtual void doPrintAction() = 0;
-
-    virtual void doExecuteAction() = 0;
-
     virtual void doNoneAction();
+
+    virtual void doPrintAction();     // recommended to override
+
+    virtual void doExecuteAction();         // recommended to override
+
+    virtual std::string document() const;   // recommended to override
+
+private:
+    std::vector<void (Executor::*) ()> actions{ACTION_COUNT};
+
+    void setActions();
 
 };
 

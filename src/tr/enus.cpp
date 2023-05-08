@@ -22,6 +22,14 @@ std::string Translator::toEnUs(const Phrase phrase) {
             return "Error: open file failed";
         case PHARSE_ERROR_FORMAT_CONVERSION_FAILED:
             return "Error: format conversion failed";
+        case PHARSE_ERROR_DOCUMENT_IS_NOT_DEFINE:
+            return "Error: document is not define";
+        case PHARSE_ERROR_PRINT_ACTION_IS_NOT_DEFINE:
+            return "Error: print action is not define";
+        case PHARSE_ERROR_EXECUTE_ACTION_IS_NOT_DEFINE:
+            return "Error: execute action is not define";
+        case PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE:
+            return "Error: no executable action to be implemented";
         default:
             return "unknown phrase";
     }

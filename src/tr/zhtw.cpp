@@ -22,6 +22,14 @@ std::string Translator::toZhTw(const Phrase phrase) {
             return "錯誤：檔案開啟失敗";
         case PHARSE_ERROR_FORMAT_CONVERSION_FAILED:
             return "錯誤：格式轉換失敗";
+        case PHARSE_ERROR_DOCUMENT_IS_NOT_DEFINE:
+            return "錯誤：未定義文檔";
+        case PHARSE_ERROR_PRINT_ACTION_IS_NOT_DEFINE:
+            return "錯誤：未定義顯示動作";
+        case PHARSE_ERROR_EXECUTE_ACTION_IS_NOT_DEFINE:
+            return "錯誤：未定義執行動作";
+        case PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE:
+            return "錯誤：沒有可執行的動作";
         default:
             return "未知的語句";
     }
