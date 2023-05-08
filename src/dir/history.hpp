@@ -6,7 +6,7 @@
 #include <vector>
 
 class History {
-protected:
+public:
     std::string path;
 
     int marker;

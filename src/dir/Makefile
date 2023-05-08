@@ -3,7 +3,8 @@ CXXFLAGS    = -Wall -std=c++17 -O3
 INCLUDES    = -I../
 AR          = ar
 ARFLAGS     = rcs
-SOURCES     = executorinfo.cpp history.cpp controller.cpp executor.cpp
+SOURCES     = executorinfo.cpp history.cpp controller.cpp executor.cpp \
+              editableexecutor.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libdir.a
 

@@ -2,17 +2,42 @@
 #define __EXECUTOR_HPP__
 
 #include "controller.hpp"
+#include "executionaction.hpp"
 
-class Executor : public Controller {
+class Executor : protected Controller {
 public:
-    Executor(const std::string path, const std::string name);
+    Executor(const std::string path);
 
     virtual ~Executor() = 0;
 
-    virtual void execute() = 0;
+    virtual Executor & execute();
 
-private:
-    std::string name;
+protected:
+    ExecutionAction executionAction = ACTION_NONE;
+
+    bool helpOption                 = false;
+
+    int number                      = 1;
+
+    std::string name                = "";
+
+    std::string source              = "";
+
+    std::string destination         = "";
+
+    std::string document            = "";
+
+    virtual void executeImpl();
+
+    virtual void printDocument() const;
+
+    virtual void act();
+
+    virtual void doPrintAction() = 0;
+
+    virtual void doExecuteAction() = 0;
+
+    virtual void doNoneAction();
 
 };
 

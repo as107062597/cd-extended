@@ -4,7 +4,8 @@
 enum ExecutionAction {
     ACTION_PRINT,
     ACTION_EXECUTE,
-    ACTION_NONE
+    ACTION_NONE,
+    ACTION_COUNT
 };
 
 #endif

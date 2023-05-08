@@ -61,6 +61,7 @@ void OptionParser::parseExecutionMode() {
 void OptionParser::parseExecutionModeImpl() {
     if (!strcmp(optv[NEXT_ARGUMENT_INDEX], ARG_SWITCH_MODE)) {
         info->setExecutionMode(MODE_SWITCH);
+        info->setExecutionAction(ACTION_EXECUTE);
     } else if (!strcmp(optv[NEXT_ARGUMENT_INDEX], ARG_BACKWARD_MODE)) {
         info->setExecutionMode(MODE_BACKWARD);
     } else if (!strcmp(optv[NEXT_ARGUMENT_INDEX], ARG_FORWARD_MODE)) {
@@ -105,18 +106,13 @@ void OptionParser::parseFilePathImpl() {
 }
 
 void OptionParser::parseSource() {
-    switch (info->getExecutionAction()) {
-        case ACTION_EXECUTE:
-        case ACTION_NONE:
-            if (optc > NEXT_ARGUMENT_INDEX) {
-                parseSourceImpl();
-                nextParsePointer();
-            } else {
-                ErrorHandler::terminate(PHARSE_ERROR_ARG_NO_SOURCE);
-            }
-            break;
-        default:
-            break;
+    if (info->getExecutionAction() == ACTION_EXECUTE) {
+        if (optc > NEXT_ARGUMENT_INDEX) {
+            parseSourceImpl();
+            nextParsePointer();
+        } else {
+            ErrorHandler::terminate(PHARSE_ERROR_ARG_NO_SOURCE);
+        }
     }
 }
 
