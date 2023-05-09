@@ -38,6 +38,8 @@ private:
 
     void printImpl(const int index);
 
+    void moveToImpl(const int index);
+
     bool isWorkingDirectoryValid() const;
 
 };

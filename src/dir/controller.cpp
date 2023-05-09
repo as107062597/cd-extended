@@ -53,7 +53,11 @@ Controller & Controller::move(const int offset) {
 }
 
 Controller & Controller::moveTo(const int index) {
-    marker = index;
+    if (isIndexValid(index) || static_cast<size_t>(index) == entries.size()) {
+        moveToImpl(index);
+    } else {
+        ErrorHandler::terminate(PHARSE_ERROR_COORDINATE_MISALIGNMENT);
+    }
     return * this;
 }
 
@@ -97,6 +101,10 @@ void Controller::autocorrection() {
 
 void Controller::printImpl(const int index) {
     std::cout << entries[index] << std::endl;
+}
+
+void Controller::moveToImpl(const int index) {
+    marker = index;
 }
 
 bool Controller::isWorkingDirectoryValid() const {
