@@ -30,6 +30,12 @@ std::string Translator::toZhTw(const Phrase phrase) {
             return "錯誤：未定義執行動作";
         case PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE:
             return "錯誤：沒有可執行的動作";
+        case PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT:
+            return "錯誤：目錄歷史檔案格式錯誤";
+        case PHARSE_ERROR_COORDINATE_MISALIGNMENT:
+            return "錯誤：目錄歷史座標錯位";
+        case PHARSE_ERROR_AUTO_CORRECTION_FAILED:
+            return "錯誤：自動校正失敗";
         default:
             return "未知的語句";
     }

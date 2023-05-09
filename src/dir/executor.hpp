@@ -35,11 +35,11 @@ protected:
 
     virtual void doNoneAction();
 
-    virtual void doPrintAction();     // recommended to override
+    virtual void doPrintAction() = 0;
 
-    virtual void doExecuteAction();         // recommended to override
+    virtual void doExecuteAction() = 0;
 
-    virtual std::string document() const;   // recommended to override
+    virtual std::string document() const = 0;
 
 private:
     std::vector<void (Executor::*) ()> actions{ACTION_COUNT};

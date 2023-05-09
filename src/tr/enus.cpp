@@ -30,6 +30,12 @@ std::string Translator::toEnUs(const Phrase phrase) {
             return "Error: execute action is not define";
         case PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE:
             return "Error: no executable action to be implemented";
+        case PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT:
+            return "Error: the format of the dirhist file is incorrect";
+        case PHARSE_ERROR_COORDINATE_MISALIGNMENT:
+            return "Error: coordinate misalignment";
+        case PHARSE_ERROR_AUTO_CORRECTION_FAILED:
+            return "Error: auto-correction failed";
         default:
             return "unknown phrase";
     }

@@ -17,17 +17,9 @@ public:
 
     virtual ~History() = 0;
 
-    virtual void init();
-
-    virtual void clear();
-
-    virtual void record();
-
     virtual void load();
 
     virtual void save() const;
-
-    virtual bool isValid() const;
 
 private:
     void load(std::ifstream & file);
@@ -45,10 +37,6 @@ private:
     void saveMarker(std::ofstream & file) const;
 
     void saveEntries(std::ofstream & file) const;
-
-    bool isMarkerValid() const;
-
-    bool isWorkingDirectoryValid() const;
 
     int strToInt(const std::string str) const;
 

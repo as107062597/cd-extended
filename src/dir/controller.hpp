@@ -9,10 +9,36 @@ public:
 
     virtual ~Controller();
 
+    virtual Controller & init();
+
+    virtual Controller & clear();
+
+    virtual Controller & record();
+
+    virtual Controller & record(const std::string directory);
+
+    virtual Controller & print(const int index);
+
+    virtual Controller & move(const int offset);
+
+    virtual Controller & moveTo(const int index);
+
+    virtual Controller & prune();
+
+    virtual bool isValid() const;
+
+    virtual bool isMarkerValid() const;
+
+    virtual bool isIndexValid(const int index) const;
+
 private:
     void preprocess();
 
     void autocorrection();
+
+    void printImpl(const int index);
+
+    bool isWorkingDirectoryValid() const;
 
 };
 

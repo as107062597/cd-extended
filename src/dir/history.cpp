@@ -8,22 +8,6 @@ History::History(const std::string path) {
 
 History::~History() {}
 
-void History::init() {
-    clear();
-    record();
-}
-
-void History::clear() {
-    marker = 0;
-    entries.clear();
-}
-
-void History::record() {
-    if (static_cast<size_t>(marker) == entries.size()) {
-        entries.push_back(Environment::getEnvVarPwd());
-    }
-}
-
 void History::load() {
     std::ifstream file(path);
     load(file);
@@ -36,10 +20,6 @@ void History::save() const {
     file.close();
 }
 
-bool History::isValid() const {
-    return isMarkerValid() && isWorkingDirectoryValid();
-}
-
 void History::load(std::ifstream & file) {
     if (file.is_open()) {
         loadImpl(file);
@@ -49,7 +29,6 @@ void History::load(std::ifstream & file) {
 }
 
 void History::loadImpl(std::ifstream & file) {
-    clear();
     loadMarker(file);
     loadEntries(file);
 }
@@ -61,6 +40,7 @@ void History::loadMarker(std::ifstream & file) {
 }
 
 void History::loadEntries(std::ifstream & file) {
+    entries.clear();
     std::string line;
     while (std::getline(file, line)) {
         entries.push_back(line);
@@ -88,14 +68,6 @@ void History::saveEntries(std::ofstream & file) const {
     for (std::string entry : entries) {
         file << entry << std::endl;
     }
-}
-
-bool History::isMarkerValid() const {
-    return marker >= 0 && static_cast<size_t>(marker) < entries.size();
-}
-
-bool History::isWorkingDirectoryValid() const {
-    return entries.at(marker) == Environment::getEnvVarPwd();
 }
 
 int History::strToInt(const std::string str) const {

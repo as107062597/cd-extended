@@ -33,19 +33,6 @@ void Executor::doNoneAction() {
     ErrorHandler::terminate(PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE);
 }
 
-void Executor::doPrintAction() {
-    ErrorHandler::terminate(PHARSE_ERROR_PRINT_ACTION_IS_NOT_DEFINE);
-}
-
-void Executor::doExecuteAction() {
-    ErrorHandler::terminate(PHARSE_ERROR_EXECUTE_ACTION_IS_NOT_DEFINE);
-}
-
-std::string Executor::document() const {
-    ErrorHandler::terminate(PHARSE_ERROR_DOCUMENT_IS_NOT_DEFINE);
-    return "";
-}
-
 void Executor::setActions() {
     actions[ACTION_PRINT] = &Executor::doPrintAction;
     actions[ACTION_EXECUTE] = &Executor::doExecuteAction;
