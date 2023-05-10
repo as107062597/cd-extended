@@ -31,12 +31,14 @@ public:
 
     virtual bool isIndexValid(const int index) const;
 
+    virtual void assertValid() const;
+
 private:
     void preprocess();
 
     void autocorrection();
 
-    void printImpl(const int index);
+    void printImpl(const int index) const;
 
     void moveToImpl(const int index);
 

@@ -25,8 +25,6 @@ protected:
 
     std::string destination         = "";
 
-    virtual void setDocument() const;
-
     virtual void executeImpl();
 
     virtual void printDocument() const;

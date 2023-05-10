@@ -12,6 +12,7 @@ void SwitchExecutor::doPrintAction() {
 }
 
 void SwitchExecutor::doExecuteAction() {
+    assertValid();
     executeAction();
 }
 
@@ -20,11 +21,7 @@ std::string SwitchExecutor::document() const {
 }
 
 void SwitchExecutor::executeAction() {
-    if (isValid()) {
-        executeActionImpl();
-    } else {
-        ErrorHandler::terminate(PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT);
-    }
+    executeActionImpl();
 }
 
 void SwitchExecutor::executeActionImpl() {

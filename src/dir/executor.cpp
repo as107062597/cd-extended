@@ -22,7 +22,7 @@ void Executor::executeImpl() {
 }
 
 void Executor::printDocument() const {
-    std::cout << document() << std::flush;
+    std::cout << document() << std::endl;
 }
 
 void Executor::act() {

@@ -78,6 +78,12 @@ bool Controller::isIndexValid(const int index) const {
     return index >= 0 && static_cast<size_t>(index) < entries.size();
 }
 
+void Controller::assertValid() const {
+    if (!isValid()) {
+        ErrorHandler::terminate(PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT);
+    }
+}
+
 void Controller::preprocess() {
     if (std::filesystem::exists(path)) {
         load();
@@ -94,12 +100,12 @@ void Controller::autocorrection() {
         marker = 0;
     } else if (static_cast<size_t>(marker) >= entries.size()) {
         marker = static_cast<int>(entries.size()) - 1;
-    } else {
+    } else if (!isValid()) {
         ErrorHandler::terminate(PHARSE_ERROR_AUTO_CORRECTION_FAILED);
     }
 }
 
-void Controller::printImpl(const int index) {
+void Controller::printImpl(const int index) const {
     std::cout << entries[index] << std::endl;
 }
 

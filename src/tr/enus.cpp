@@ -36,6 +36,12 @@ std::string Translator::toEnUs(const Phrase phrase) {
             return "Error: coordinate misalignment";
         case PHARSE_ERROR_AUTO_CORRECTION_FAILED:
             return "Error: auto-correction failed";
+        case PHARSE_ERROR_UNEXPECTED_DESTINATION:
+            return "Error: unexpected destination";
+        case PHARSE_MESSAGE_ALREADY_ON_FIRST_DIRECTORY:
+            return "already on the first directory";
+        case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_BACK:
+            return "too many directories to go back";
         default:
             return "unknown phrase";
     }

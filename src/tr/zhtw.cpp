@@ -36,6 +36,12 @@ std::string Translator::toZhTw(const Phrase phrase) {
             return "錯誤：目錄歷史座標錯位";
         case PHARSE_ERROR_AUTO_CORRECTION_FAILED:
             return "錯誤：自動校正失敗";
+        case PHARSE_ERROR_UNEXPECTED_DESTINATION:
+            return "錯誤：非預期的目標目錄";
+        case PHARSE_MESSAGE_ALREADY_ON_FIRST_DIRECTORY:
+            return "已位於第一個目錄";
+        case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_BACK:
+            return "退回目錄數過多";
         default:
             return "未知的語句";
     }

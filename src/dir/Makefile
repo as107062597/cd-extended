@@ -4,7 +4,7 @@ INCLUDES    = -I../
 AR          = ar
 ARFLAGS     = rcs
 SOURCES     = executorinfo.cpp history.cpp controller.cpp executor.cpp \
-              editableexecutor.cpp switchexecutor.cpp
+              editableexecutor.cpp switchexecutor.cpp backwardexecutor.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libdir.a
 

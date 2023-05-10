@@ -11,6 +11,10 @@ void ErrorHandler::terminate() {
 }
 
 void ErrorHandler::terminate(const Phrase phrase) {
-    std::cerr << Translator::tr(phrase) << std::endl;
+    terminate(Translator::tr(phrase));
+}
+
+void ErrorHandler::terminate(const std::string message) {
+    std::cerr << message << std::endl;
     terminate();
 }
