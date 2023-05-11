@@ -40,8 +40,12 @@ std::string Translator::toEnUs(const Phrase phrase) {
             return "Error: unexpected destination";
         case PHARSE_MESSAGE_ALREADY_ON_FIRST_DIRECTORY:
             return "already on the first directory";
+        case PHARSE_MESSAGE_ALREADY_ON_LAST_DIRECTORY:
+            return "already on the last directory";
         case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_BACK:
             return "too many directories to go back";
+        case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_AHEAD:
+            return "too many directories to go ahead";
         default:
             return "unknown phrase";
     }

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "backwardexecutor.hpp"
 #include "util/errorhandler.hpp"
 #include "tr/translator.hpp"

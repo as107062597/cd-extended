@@ -40,8 +40,12 @@ std::string Translator::toZhTw(const Phrase phrase) {
             return "錯誤：非預期的目標目錄";
         case PHARSE_MESSAGE_ALREADY_ON_FIRST_DIRECTORY:
             return "已位於第一個目錄";
+        case PHARSE_MESSAGE_ALREADY_ON_LAST_DIRECTORY:
+            return "已位於最後一個目錄";
         case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_BACK:
             return "退回目錄數過多";
+        case PHARSE_MESSAGE_TOO_MANY_DIRECTORIES_TO_GO_AHEAD:
+            return "前進目錄數過多";
         default:
             return "未知的語句";
     }
