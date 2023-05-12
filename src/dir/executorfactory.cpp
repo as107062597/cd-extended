@@ -5,6 +5,13 @@ ExecutorFactory::ExecutorFactory() {};
 
 ExecutorFactory::~ExecutorFactory() {};
 
+ExecutorFactory & ExecutorFactory::setExecutionAction(
+    const ExecutionAction executionAction
+) {
+    this->executionAction = executionAction;
+    return * this;
+}
+
 ExecutorFactory & ExecutorFactory::setHelpOption(const bool helpOption) {
     this->helpOption = helpOption;
     return * this;
@@ -40,7 +47,8 @@ ExecutorFactory & ExecutorFactory::setDestination(
 Executor * ExecutorFactory::getExecutor() const {
     return &(
         static_cast<EditableExecutor *>(createExecutor())
-            ->setHelpOption(helpOption)
+            ->setExecutionAction(executionAction)
+            .setHelpOption(helpOption)
             .setNumber(number)
             .setName(name)
             .setSource(source)

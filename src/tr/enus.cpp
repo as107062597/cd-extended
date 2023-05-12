@@ -18,6 +18,8 @@ std::string Translator::toEnUs(const Phrase phrase) {
             return "Error: source directory not set";
         case PHARSE_ERROR_ARG_NO_DESTINATION:
             return "Error: destination directory not set";
+        case PHARSE_ERROR_DIRHIST_FILE_NOT_FOUND:
+            return "Error: dirhist file not found";
         case PHARSE_ERROR_OPEN_FILE_FAILED:
             return "Error: open file failed";
         case PHARSE_ERROR_FORMAT_CONVERSION_FAILED:

@@ -9,6 +9,9 @@ public:
 
     virtual ~ExecutorFactory() = 0;
 
+    virtual ExecutorFactory & setExecutionAction(
+        const ExecutionAction executionAction);
+
     virtual ExecutorFactory & setHelpOption(const bool helpOption);
 
     virtual ExecutorFactory & setNumber(const int number);
@@ -24,6 +27,8 @@ public:
     virtual Executor * getExecutor() const;
 
 protected:
+    ExecutionAction executionAction;
+
     bool helpOption;
 
     int number;

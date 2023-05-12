@@ -14,12 +14,13 @@ void BackwardExecutor::doPrintAction() {
 }
 
 void BackwardExecutor::doExecuteAction() {
-    assertValid();
+    assertMarker();
+    assertSource();
     executeAction();
 }
 
 std::string BackwardExecutor::document() const {
-    return R"(Usage: pd [OPTION]
+    return R"(Usage: pd [NUMBER] [OPTION]
 Switches the working directory to the previous working directory.
 
 It also allows you to navigate to even earlier working directories through

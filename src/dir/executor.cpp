@@ -33,6 +33,16 @@ void Executor::doNoneAction() {
     ErrorHandler::terminate(PHARSE_ERROR_NO_EXECUTABLE_ACTION_AVAILABLE);
 }
 
+bool Executor::isSourceValid() const {
+    return entries[marker] == source;
+}
+
+void Executor::assertSource() const {
+    if (!isSourceValid()) {
+        ErrorHandler::terminate(PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT);
+    }
+}
+
 void Executor::setActions() {
     actions[ACTION_PRINT] = &Executor::doPrintAction;
     actions[ACTION_EXECUTE] = &Executor::doExecuteAction;

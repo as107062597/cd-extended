@@ -12,7 +12,8 @@ void SwitchExecutor::doPrintAction() {
 }
 
 void SwitchExecutor::doExecuteAction() {
-    assertValid();
+    assertMarker();
+    assertSource();
     executeAction();
 }
 

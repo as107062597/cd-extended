@@ -14,12 +14,13 @@ void ForwardExecutor::doPrintAction() {
 }
 
 void ForwardExecutor::doExecuteAction() {
-    assertValid();
+    assertMarker();
+    assertSource();
     executeAction();
 }
 
 std::string ForwardExecutor::document() const {
-    return R"(Usage: nd [OPTION]
+    return R"(Usage: nd [NUMBER] [OPTION]
 Switches the working directory to the next working directory.
 
 It also allows you to navigate to even earlier working directories through

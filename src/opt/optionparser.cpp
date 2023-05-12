@@ -7,6 +7,12 @@
 
 #define NEXT_ARGUMENT_INDEX 1
 
+#define CMD_NAME_SWITCH     "sd"
+
+#define CMD_NAME_BACKWARD   "pd"
+
+#define CMD_NAME_FORWARD    "nd"
+
 #define ARG_SWITCH_MODE     "switch"
 
 #define ARG_BACKWARD_MODE   "backward"
@@ -43,9 +49,11 @@ ExecutorInfo * OptionParser::getExecutorInfo() const {
 void OptionParser::parseImpl() {
     parseExecutionMode();
     parseExecutionAction();
-    parseFilePath();
+    parsePath();
     parseSource();
     parseDestination();
+    parseNumber();
+    parseName();
     parseOptions();
 }
 
@@ -92,17 +100,17 @@ void OptionParser::parseExecutionActionImpl() {
     }
 }
 
-void OptionParser::parseFilePath() {
+void OptionParser::parsePath() {
     if (optc > NEXT_ARGUMENT_INDEX) {
-        parseFilePathImpl();
+        parsePathImpl();
         nextParsePointer();
     } else {
         ErrorHandler::terminate(PHARSE_ERROR_ARG_NO_PATH_FILE);
     }
 }
 
-void OptionParser::parseFilePathImpl() {
-    info->setFilePath(optv[NEXT_ARGUMENT_INDEX]);
+void OptionParser::parsePathImpl() {
+    info->setPath(optv[NEXT_ARGUMENT_INDEX]);
 }
 
 void OptionParser::parseSource() {
@@ -135,6 +143,28 @@ void OptionParser::parseDestinationImpl() {
     info->setDestination(optv[NEXT_ARGUMENT_INDEX]);
 }
 
+void OptionParser::parseNumber() {
+    switch (info->getExecutionMode()) {
+        case MODE_BACKWARD:
+        case MODE_FORWARD: {
+            if (optc > NEXT_ARGUMENT_INDEX) {
+                parseNumberImpl();
+            }
+        }
+    }
+}
+
+void OptionParser::parseNumberImpl() {
+    info->setNumber(
+        std::max(info->getNumber(), atoi(optv[NEXT_ARGUMENT_INDEX]))
+    );
+}
+
+void OptionParser::parseName() {
+    info->setName(getNameByInfoMode());
+    setName();
+}
+
 void OptionParser::parseOptions() {
     const char * optstr = ARG_OPTIONS_STRING;
     const struct option opts[] = ARG_OPTIONS_LONG;
@@ -159,6 +189,10 @@ void OptionParser::parseOption(const int opt, const char * const optarg) {
     }
 }
 
+void OptionParser::setName() {
+    strcpy(*optv, info->getName().c_str());
+}
+
 void OptionParser::setParsePointer() {
     optc = argc;
     optv = argv;
@@ -167,4 +201,17 @@ void OptionParser::setParsePointer() {
 void OptionParser::nextParsePointer() {
     optc -= 1;
     optv += 1;
+}
+
+std::string OptionParser::getNameByInfoMode() const {
+    switch (info->getExecutionMode()) {
+        case MODE_SWITCH:
+            return CMD_NAME_SWITCH;
+        case MODE_BACKWARD:
+            return CMD_NAME_BACKWARD;
+        case MODE_FORWARD:
+            return CMD_NAME_FORWARD;
+        default:
+            return "";
+    }
 }

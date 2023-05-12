@@ -39,6 +39,10 @@ protected:
 
     virtual std::string document() const = 0;
 
+    virtual bool isSourceValid() const;
+
+    virtual void assertSource() const;
+
 private:
     std::vector<void (Executor::*) ()> actions{ACTION_COUNT};
 
