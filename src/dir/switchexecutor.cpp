@@ -22,7 +22,9 @@ std::string SwitchExecutor::document() const {
 }
 
 void SwitchExecutor::executeAction() {
-    executeActionImpl();
+    if (destination != source) {
+        executeActionImpl();
+    }
 }
 
 void SwitchExecutor::executeActionImpl() {
