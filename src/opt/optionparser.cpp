@@ -144,19 +144,10 @@ void OptionParser::parseDestinationImpl() {
 }
 
 void OptionParser::parseNumber() {
-<<<<<<< HEAD
     const ExecutionMode mode = info->getExecutionMode();
     if (mode == MODE_BACKWARD || mode == MODE_FORWARD) {
         if (optc > NEXT_ARGUMENT_INDEX) {
             parseNumberImpl();
-=======
-    switch (info->getExecutionMode()) {
-        case MODE_BACKWARD:
-        case MODE_FORWARD: {
-            if (optc > NEXT_ARGUMENT_INDEX) {
-                parseNumberImpl();
-            }
->>>>>>> f9db397cfde91e3d43f55d94b5e7b9acf17aea4f
         }
     }
 }
