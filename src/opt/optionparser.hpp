@@ -32,9 +32,9 @@ private:
 
     void parseExecutionActionImpl();
 
-    void parseFilePath();
+    void parsePath();
 
-    void parseFilePathImpl();
+    void parsePathImpl();
 
     void parseSource();
 
@@ -44,13 +44,23 @@ private:
 
     void parseDestinationImpl();
 
+    void parseNumber();
+
+    void parseNumberImpl();
+
+    void parseName();
+
     void parseOptions();
+
+    void setName();
 
     void parseOption(const int opt, const char * const optarg);
 
     void setParsePointer();
 
     void nextParsePointer();
+
+    std::string getNameByInfoMode() const;
 
 };
 

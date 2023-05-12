@@ -7,7 +7,7 @@ SOURCES     = executorinfo.cpp history.cpp controller.cpp executor.cpp \
               editableexecutor.cpp switchexecutor.cpp backwardexecutor.cpp \
               forwardexecutor.cpp executorfactory.cpp \
               switchexecutorfactory.cpp backwardexecutorfactory.cpp \
-              forwardexecutorfactory.cpp
+              forwardexecutorfactory.cpp executorfactoryproducer.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libdir.a
 

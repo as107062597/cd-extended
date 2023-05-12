@@ -53,13 +53,13 @@ std::string ExecutorInfo::getName() const {
     return name;
 }
 
-ExecutorInfo & ExecutorInfo::setFilePath(const std::string filePath) {
-    this->filePath = filePath;
+ExecutorInfo & ExecutorInfo::setPath(const std::string path) {
+    this->path = path;
     return * this;
 }
 
-std::string ExecutorInfo::getFilePath() const {
-    return filePath;
+std::string ExecutorInfo::getPath() const {
+    return path;
 }
 
 ExecutorInfo & ExecutorInfo::setSource(const std::string source) {

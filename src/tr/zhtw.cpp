@@ -18,6 +18,8 @@ std::string Translator::toZhTw(const Phrase phrase) {
             return "錯誤：未設定來源目錄";
         case PHARSE_ERROR_ARG_NO_DESTINATION:
             return "錯誤：未設定目標目錄";
+        case PHARSE_ERROR_DIRHIST_FILE_NOT_FOUND:
+            return "錯誤：找不到目錄歷史檔案";
         case PHARSE_ERROR_OPEN_FILE_FAILED:
             return "錯誤：檔案開啟失敗";
         case PHARSE_ERROR_FORMAT_CONVERSION_FAILED:

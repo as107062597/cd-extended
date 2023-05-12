@@ -84,11 +84,17 @@ void Controller::assertValid() const {
     }
 }
 
+void Controller::assertMarker() const {
+    if (!isMarkerValid()) {
+        ErrorHandler::terminate(PHARSE_ERROR_FORMAT_DIRHIST_FILE_IS_INCORRECT);
+    }
+}
+
 void Controller::preprocess() {
     if (std::filesystem::exists(path)) {
         load();
     } else {
-        init();
+        ErrorHandler::terminate(PHARSE_ERROR_DIRHIST_FILE_NOT_FOUND);
     }
 }
 
@@ -100,8 +106,6 @@ void Controller::autocorrection() {
         marker = 0;
     } else if (static_cast<size_t>(marker) >= entries.size()) {
         marker = static_cast<int>(entries.size()) - 1;
-    } else if (!isValid()) {
-        ErrorHandler::terminate(PHARSE_ERROR_AUTO_CORRECTION_FAILED);
     }
 }
 

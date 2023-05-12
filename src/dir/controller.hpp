@@ -33,6 +33,8 @@ public:
 
     virtual void assertValid() const;
 
+    virtual void assertMarker() const;
+
 private:
     void preprocess();
 

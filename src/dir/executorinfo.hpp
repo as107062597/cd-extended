@@ -31,9 +31,9 @@ public:
 
     std::string getName() const;
 
-    ExecutorInfo & setFilePath(const std::string filePath);
+    ExecutorInfo & setPath(const std::string path);
 
-    std::string getFilePath() const;
+    std::string getPath() const;
 
     ExecutorInfo & setSource(const std::string source);
 
@@ -54,7 +54,7 @@ private:
 
     std::string name                = "";
 
-    std::string filePath            = "";
+    std::string path                = "";
 
     std::string source              = "";
 

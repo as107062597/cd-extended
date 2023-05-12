@@ -1,7 +1,7 @@
 **cd-extended**
 ===============
 version: 1.0.0\
-Release date: --/--/----
+Release date: 05/13/2023
 
 Author
 ======
