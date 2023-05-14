@@ -1,7 +1,3 @@
-CXX         = g++
-CXXFLAGS    = -Wall -std=c++17 -O3
-AR          = ar
-ARFLAGS     = rcs
 SOURCES     = translator.cpp enus.cpp zhtw.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libtr.a

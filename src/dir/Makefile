@@ -1,8 +1,4 @@
-CXX         = g++
-CXXFLAGS    = -Wall -std=c++17 -O3
 INCLUDES    = -I../
-AR          = ar
-ARFLAGS     = rcs
 SOURCES     = executorinfo.cpp history.cpp controller.cpp executor.cpp \
               editableexecutor.cpp switchexecutor.cpp backwardexecutor.cpp \
               forwardexecutor.cpp executorfactory.cpp \

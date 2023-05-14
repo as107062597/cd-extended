@@ -1,6 +1,6 @@
 **cd-extended**
 ===============
-version: 1.0.0\
+version: 1.0.1\
 Release date: 05/13/2023
 
 Author
@@ -19,9 +19,9 @@ This is a project for Linux platform that makes changing directories more conven
 Usage
 =====
 The commands ```pd``` and ```nd``` are similar to the *back* and *forward* buttons in a web browser, respectively. As their names suggest, they allow users to navigate through previously visited directories. Here are the detailed usage and formats for them:
-#### ```pd``` [-*n* NUMBER]
+#### ```pd``` [NUMBER]
 - Switch the working directory to the *n*-th directory in reverse order. If *n* is not specified, go to the previous directory.
-#### ```nd``` [-*n* NUMBER]
+#### ```nd``` [NUMBER]
 - Change the current working directory to the *n*-th directory after the current one. Go to the next directory if *n* is not specified.
 
 Install

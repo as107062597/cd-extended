@@ -6,6 +6,8 @@ SCPDIRS     = script
 SRCDIRS     = src
 SUBDIRS     = $(SCPDIRS) $(SRCDIRS)
 
+export CXX CXXFLAGS AR ARFLAGS
+
 all: $(SUBDIRS)
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir; done
 

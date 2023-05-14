@@ -1,8 +1,4 @@
-CXX         = g++
-CXXFLAGS    = -Wall -std=c++17 -O3
 INCLUDES    = -I../
-AR          = ar
-ARFLAGS     = rcs
 SOURCES     = optionparser.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libopt.a

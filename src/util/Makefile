@@ -1,8 +1,4 @@
-CXX         = g++
-CXXFLAGS    = -Wall -std=c++17 -O3
 INCLUDES    = -I../
-AR          = ar
-ARFLAGS     = rcs
 SOURCES     = environment.cpp errorhandler.cpp
 OBJECTS     = $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      = libutil.a
