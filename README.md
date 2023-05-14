@@ -1,6 +1,6 @@
 **cd-extended**
 ===============
-version: 1.0.1\
+Version: 1.0.1\
 Release date: 05/13/2023
 
 Author
