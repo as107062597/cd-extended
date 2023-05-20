@@ -1,7 +1,7 @@
 **cd-extended**
 ===============
-Version: 1.0.1\
-Release date: 05/13/2023
+Version: 1.0.2\
+Release date: 05/20/2023
 
 Author
 ======
@@ -45,7 +45,7 @@ Install the compiled scripts and binaries.
 
 Finally, apply the settings that were just configured to the environment.
 
-    . install-shell
+    . install.sh
 
 Uninstall
 =========
@@ -55,7 +55,7 @@ You can first undo the alias setting if these commands becomes unavailable due t
 
 You can first undo the environment setting after entering the repository directory, the *cd-extended* folder.
 
-    . uninstall-shell
+    . uninstall.sh
 
 Next, remove the installed scripts and binaries from the environment.
 

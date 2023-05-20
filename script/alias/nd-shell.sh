@@ -20,7 +20,10 @@ if [ -f $DIRCTL ] && [ -d $(dirname $DIRHIST) ]; then
         if [ ${DEST:0:1} == '/' ]; then
             builtin cd $DEST
             EXITSTAT=$?
-            $DIRCTL $EXEMODE $CTLEXEC $DIRHIST $SOURCE $DEST $@ >/dev/null 2>&1
+
+            if [ $EXITSTAT -eq 0 ]; then
+                $DIRCTL $EXEMODE $CTLEXEC $DIRHIST $SOURCE $DEST $@ >/dev/null 2>&1
+            fi
         else
             echo "$DEST"
         fi

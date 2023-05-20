@@ -4,11 +4,13 @@ AR          = ar
 ARFLAGS     = rcs
 SCPDIRS     = script
 SRCDIRS     = src
+SCRIPTS     = install.sh uninstall.sh
 SUBDIRS     = $(SCPDIRS) $(SRCDIRS)
 
 export CXX CXXFLAGS AR ARFLAGS
 
 all: $(SUBDIRS)
+	for file in $(SCRIPTS); do sed -i 's/\r//' $$file; done
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir; done
 
 clean: $(SRCDIR)
