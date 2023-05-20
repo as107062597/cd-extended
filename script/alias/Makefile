@@ -2,9 +2,6 @@ TARGETS     = cd-shell.sh pd-shell.sh nd-shell.sh
 INSTDIR     = $(HOME)/.local/usr/opt/cd-extended
 INSTPATHS   = $(addprefix $(INSTDIR)/,$(basename $(TARGETS)))
 
-all:
-	sed -i 's/\r//' *
-
 install: $(INSTPATHS)
 
 $(INSTDIR)/%: %.sh
@@ -15,4 +12,4 @@ uninstall:
 	do rm -f $$file; \
 	done
 
-.PHONY: all install uninstall
+.PHONY: install uninstall

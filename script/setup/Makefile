@@ -3,9 +3,6 @@ INSTDIR     = $(HOME)/.local/etc/bashrc.d
 INSTPATH    = $(INSTDIR)/$(TARGET)
 UPDATE      = update_bashrc.sh
 
-all:
-	sed -i 's/\r//' *
-
 install: $(INSTPATH)
 	bash $(UPDATE)
 
@@ -15,4 +12,4 @@ $(INSTPATH): $(TARGET)
 uninstall:
 	rm -f $(INSTPATH)
 
-.PHONY: all install uninstall
+.PHONY: install uninstall

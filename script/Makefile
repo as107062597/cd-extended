@@ -1,7 +1,4 @@
-SUBDIRS     = setup alias
-
-all: $(SUBDIRS)
-	for dir in $(SUBDIRS); do $(MAKE) -C $$dir; done
+SUBDIRS = setup alias
 
 install: $(SUBDIRS)
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir install; done
@@ -9,4 +6,4 @@ install: $(SUBDIRS)
 uninstall: $(SUBDIRS)
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir uninstall; done
 
-.PHONY:	all install uninstall
+.PHONY:	install uninstall
