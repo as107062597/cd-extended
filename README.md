@@ -26,8 +26,9 @@ The commands ```pd``` and ```nd``` are similar to the *back* and *forward* butto
 
 Install
 =======
-You can install the tool by following these steps after cloning this repository.\
-First, you need to clone this repository.
+First, please make sure that your computer has g++ version **8.1** or **higher** installed before proceeding with the installation.
+
+Afterward, you need to clone this repository.
 
     git clone https://github.com/as107062597/cd-extended.git
 

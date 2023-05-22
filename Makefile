@@ -1,5 +1,5 @@
 CXX         = g++
-CXXFLAGS    = -Wall -std=c++17 -O3
+CXXFLAGS    = -Wall -std=c++17 -lstdc++fs -O3
 AR          = ar
 ARFLAGS     = rcs
 SCPDIRS     = script

@@ -12,7 +12,7 @@ INSTDIR     = $(HOME)/.local/usr/opt/cd-extended/$(TARGET)
 all: $(TARGET)
 
 $(TARGET): $(LIBPATHS) $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJECTS) $(LDFLAGS) $(LIBS) -o $(TARGET)
+	$(CXX) $(INCLUDES) $(OBJECTS) $(LDFLAGS) $(LIBS) -o $(TARGET) $(CXXFLAGS)
 
 %.a:
 	$(MAKE) -C $(dir $@)
