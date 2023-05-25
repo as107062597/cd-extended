@@ -13,7 +13,7 @@ $(TARGET): $(OBJECTS)
 	$(AR) $(ARFLAGS) $(TARGET) $(OBJECTS)
 
 %.o: %.cpp
-	$(CXX) $(INCLUDES) -c -o $@ $< $(CXXFLAGS)
+	$(CXX) -c -o $@ $< $(INCLUDES) $(CXXFLAGS)
 
 clean:
 	rm -f $(OBJECTS)

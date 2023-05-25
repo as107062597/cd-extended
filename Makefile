@@ -12,8 +12,8 @@ export CXX CXXFLAGS AR ARFLAGS
 all: $(SRCDIRS)
 	for dir in $(SRCDIRS); do $(MAKE) -C $$dir; done
 
-clean: $(SRCDIR)
-	for dir in $(SUBDIRS); do $(MAKE) -C $$dir clean; done
+clean: $(SRCDIRS)
+	for dir in $(SRCDIRS); do $(MAKE) -C $$dir clean; done
 
 install: $(SUBDIRS)
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir install; done

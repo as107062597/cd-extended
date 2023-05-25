@@ -12,18 +12,16 @@ INSTDIR     = $(HOME)/.local/usr/opt/cd-extended/$(TARGET)
 all: $(TARGET)
 
 $(TARGET): $(LIBPATHS) $(OBJECTS)
-	$(CXX) $(INCLUDES) $(OBJECTS) $(LDFLAGS) $(LIBS) -o $(TARGET) $(CXXFLAGS)
+	$(CXX) -o $(TARGET) $(INCLUDES) $(OBJECTS) $(LDFLAGS) $(LIBS) $(CXXFLAGS)
 
 %.a:
 	$(MAKE) -C $(dir $@)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
+	$(CXX) -c -o $@ $< $(CXXFLAGS) $(INCLUDES)
 
 clean:
-	for dir in $(LIBDIRS); \
-	do $(MAKE) -C $$dir clean; \
-	done
+	for dir in $(LIBDIRS); do $(MAKE) -C $$dir clean; done
 	rm -f $(OBJECTS)
 	rm -f $(TARGET)
 
