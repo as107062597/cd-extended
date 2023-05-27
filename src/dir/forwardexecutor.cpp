@@ -49,7 +49,7 @@ The format of DURATION is <day>d|<hour>h|<minute>m|<second>s. For example, you
 can use the following phrase to express one day and a half: 1d12h
 
 The TIMESTAMP argument is composed of <yyyy>, <MM>, <dd>, <HH>, <mm> and <ss>,
-representing year, month, day, hour, minute and second respectively.
+representing year, month, date, hour, minute and second respectively.
 
 TIMESTAMP format:
   <HH>:<mm>[:<ss>]
