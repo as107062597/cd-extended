@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # set variables
-TMP_CDNAME='cd'
-TMP_PDNAME='pd'
-TMP_NDNAME='nd'
-TMP_CDSHELL="$HOME/.local/usr/opt/cd-extended/cd-shell"
-TMP_EXSHELL="$HOME/.local/usr/opt/cd-extended/ex-shell"
-TMP_HISTDIR="$HOME/.local/etc/cd-extended.d"
-TMP_DIRHIST='dir.hist'
-TMP_BRANCH_DIRHIST="$(whoami)-$(date +%s%9N)-$(uuidgen).dir.hist"
+CDEXTENDED_CDNAME='cd'
+CDEXTENDED_PDNAME='pd'
+CDEXTENDED_NDNAME='nd'
+CDEXTENDED_CDSHELL="$HOME/.local/usr/opt/cd-extended/cd-shell"
+CDEXTENDED_EXSHELL="$HOME/.local/usr/opt/cd-extended/ex-shell"
+CDEXTENDED_HISTDIR="$HOME/.local/etc/cd-extended.d"
+CDEXTENDED_DIRHIST='dir.hist'
+CDEXTENDED_BRANCH_DIRHIST="$(whoami)-$(date +%s%9N)-$(uuidgen).dir.hist"
 
 # set global variables
-DIRHIST_PATH="$TMP_HISTDIR/$TMP_DIRHIST"
-BRANCH_DIRHIST_PATH="$TMP_HISTDIR/$TMP_BRANCH_DIRHIST"
+DIRHIST_PATH="$CDEXTENDED_HISTDIR/$CDEXTENDED_DIRHIST"
+BRANCH_DIRHIST_PATH="$CDEXTENDED_HISTDIR/$CDEXTENDED_BRANCH_DIRHIST"
 
 # create a directory for the dir.hist file
-mkdir -p $TMP_HISTDIR
+mkdir -p $CDEXTENDED_HISTDIR
 
 # initialize branch dir.hist file
 if [ -f $DIRHIST_PATH ] && [ -r $DIRHIST_PATH ]; then
@@ -28,18 +28,18 @@ else
 fi
 
 # declare aliases
-if [ -f $TMP_CDSHELL ] && [ -f $TMP_EXSHELL ]; then
-    alias cd=". $TMP_CDSHELL $TMP_CDNAME"
-    alias pd=". $TMP_EXSHELL $TMP_PDNAME"
-    alias nd=". $TMP_EXSHELL $TMP_NDNAME"
+if [ -f $CDEXTENDED_CDSHELL ] && [ -f $CDEXTENDED_EXSHELL ]; then
+    alias cd=". $CDEXTENDED_CDSHELL $CDEXTENDED_CDNAME"
+    alias pd=". $CDEXTENDED_EXSHELL $CDEXTENDED_PDNAME"
+    alias nd=". $CDEXTENDED_EXSHELL $CDEXTENDED_NDNAME"
 fi
 
 # unset variables
-unset TMP_CDNAME
-unset TMP_PDNAME
-unset TMP_NDNAME
-unset TMP_CDSHELL
-unset TMP_EXSHELL
-unset TMP_HISTDIR
-unset TMP_DIRHIST
-unset TMP_BRANCH_DIRHIST
+unset CDEXTENDED_CDNAME
+unset CDEXTENDED_PDNAME
+unset CDEXTENDED_NDNAME
+unset CDEXTENDED_CDSHELL
+unset CDEXTENDED_EXSHELL
+unset CDEXTENDED_HISTDIR
+unset CDEXTENDED_DIRHIST
+unset CDEXTENDED_BRANCH_DIRHIST

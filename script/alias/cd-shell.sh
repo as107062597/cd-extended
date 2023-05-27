@@ -2,40 +2,41 @@
 # unless you are familiar with its content.
 
 # set variables
-TMP_DIRCTL="$HOME/.local/usr/opt/cd-extended/dirctl"
-TMP_EXEMODE='switch'
-TMP_NAME=$1
+CDEXTENDED_DIRCTL="$HOME/.local/usr/opt/cd-extended/dirctl"
+CDEXTENDED_EXEMODE='switch'
+CDEXTENDED_NAME=$1
 shift
 
 # change directory
-TMP_SOURCE=$(pwd)
+CDEXTENDED_SOURCE=$(pwd)
 builtin cd $@
-TMP_EXITSTAT=$?
-TMP_DEST=$(pwd)
+CDEXTENDED_EXITSTAT=$?
+CDEXTENDED_DEST=$(pwd)
 
 # execute the main process
 if [ -f $BRANCH_DIRHIST_PATH ] && [ -r $BRANCH_DIRHIST_PATH ]; then
-    if [ -f $TMP_DIRCTL ] && [ -x $TMP_DIRCTL ]; then
-        $TMP_DIRCTL $TMP_EXEMODE $BRANCH_DIRHIST_PATH $TMP_SOURCE $TMP_DEST \
-            $TMP_NAME >/dev/null 2>&1
+    if [ -f $CDEXTENDED_DIRCTL ] && [ -x $CDEXTENDED_DIRCTL ]; then
+        $CDEXTENDED_DIRCTL $CDEXTENDED_EXEMODE $BRANCH_DIRHIST_PATH \
+            $CDEXTENDED_SOURCE $CDEXTENDED_DEST \
+            $CDEXTENDED_NAME >/dev/null 2>&1
     fi
 fi
 
 # unset varables
-unset TMP_DIRCTL
-unset TMP_EXEMODE
-unset TMP_SOURCE
-unset TMP_DEST
-unset TMP_NAME
+unset CDEXTENDED_DIRCTL
+unset CDEXTENDED_EXEMODE
+unset CDEXTENDED_SOURCE
+unset CDEXTENDED_DEST
+unset CDEXTENDED_NAME
 
 # return
 case $EXITSTAT in
     0)
-        unset TMP_EXITSTAT
+        unset CDEXTENDED_EXITSTAT
         true
         ;;
     *)
-        unset TMP_EXITSTAT
+        unset CDEXTENDED_EXITSTAT
         false
         ;;
 esac
