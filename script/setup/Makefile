@@ -1,10 +1,10 @@
 TARGET      = cd-extended.sh
 INSTDIR     = $(HOME)/.local/etc/bashrc.d
 INSTPATH    = $(INSTDIR)/$(TARGET)
-UPDATE      = update_bashrc.sh
+SCRIPTS     = update_bashrc.sh update_bash_logout.sh
 
 install: $(INSTPATH)
-	bash $(UPDATE)
+	for script in $(SCRIPTS); do bash $$script; done
 
 $(INSTPATH): $(TARGET)
 	install -D -m 644 $< $@

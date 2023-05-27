@@ -1,39 +1,41 @@
-# This script can only be executed using the dot command.
-# It is not recommended to execute this script directly unless
-# you are familiar with its content.
+# It is not recommended to execute this script directly
+# unless you are familiar with its content.
 
 # set variables
-DIRCTL="$HOME/.local/usr/opt/cd-extended/dirctl"
-DIRHIST=$1
-EXEMODE='switch'
+TMP_DIRCTL="$HOME/.local/usr/opt/cd-extended/dirctl"
+TMP_EXEMODE='switch'
+TMP_NAME=$1
 shift
 
 # change directory
-SOURCE=$(pwd)
+TMP_SOURCE=$(pwd)
 builtin cd $@
-EXITSTAT=$?
-DEST=$(pwd)
+TMP_EXITSTAT=$?
+TMP_DEST=$(pwd)
 
 # execute the main process
-if [ -f $DIRCTL ] && [ -d $(dirname $DIRHIST) ]; then
-    $DIRCTL $EXEMODE $DIRHIST $SOURCE $DEST >/dev/null 2>&1
+if [ -f $BRANCH_DIRHIST_PATH ] && [ -r $BRANCH_DIRHIST_PATH ]; then
+    if [ -f $TMP_DIRCTL ] && [ -x $TMP_DIRCTL ]; then
+        $TMP_DIRCTL $TMP_EXEMODE $BRANCH_DIRHIST_PATH $TMP_SOURCE $TMP_DEST \
+            $TMP_NAME >/dev/null 2>&1
+    fi
 fi
 
 # unset varables
-unset DIRCTL
-unset DIRHIST
-unset EXEMODE
-unset SOURCE
-unset DEST
+unset TMP_DIRCTL
+unset TMP_EXEMODE
+unset TMP_SOURCE
+unset TMP_DEST
+unset TMP_NAME
 
 # return
 case $EXITSTAT in
     0)
-        unset EXITSTAT
+        unset TMP_EXITSTAT
         true
         ;;
     *)
-        unset EXITSTAT
+        unset TMP_EXITSTAT
         false
         ;;
 esac
