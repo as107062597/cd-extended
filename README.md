@@ -8,19 +8,19 @@ Release date: 05/20/2023
 ## Introduction
 This is a project for Linux platform that makes changing directories more convenient. It automatically records directories visited by the user through the existing ```cd``` command by using additional files and programs. Moreover, it provides the ```pd``` and ```nd``` commands to help users shuttle between these directories more easily and quickly.
 
-#### **```pd```**: **previous-directory**
+**```pd```**: **previous-directory**
 - This command switches the working directory to the previous working directory. It also allows you to navigate to even earlier working directories through options and parameters.
 
-#### **```nd```**: **next-directory**
+**```nd```**: **next-directory**
 - This command helps the user to return to an even earlier working directory when using the ```pd``` command to go back to a previous working directory. It also allows the user to switch to a later visited working directory through options and parameters.
 
 ## Usage
 The commands ```pd``` and ```nd``` are similar to the *back* and *forward* buttons in a web browser, respectively. As their names suggest, they allow users to navigate through previously visited directories. Here are the usage and formats for them.
 
-#### ```pd``` [NUMBER]
+**```pd```** [ *NUMBER* ]
 - Switch the working directory to the *NUMBER*-th directory in reverse order. If *NUMBER* is not specified, go to the previous directory.
 
-#### ```nd``` [NUMBER]
+**```nd```** [ *NUMBER* ]
 - Change the current working directory to the *NUMBER*-th directory after the current one. Go to the next directory if *NUMBER* is not specified.
 
 You can add the option ```--help``` when issuing commands to get more detailed usage information.
