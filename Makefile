@@ -21,4 +21,6 @@ install: $(SUBDIRS)
 uninstall: $(SUBDIRS)
 	for dir in $(SUBDIRS); do $(MAKE) -C $$dir uninstall; done
 
-.PHONY: all clean install uninstall
+upgrade: uninstall clean all install
+
+.PHONY: all clean install uninstall upgrade

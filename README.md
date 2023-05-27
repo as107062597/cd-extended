@@ -46,7 +46,7 @@ Install the compiled scripts and binaries.
 
 Finally, apply the settings that were just configured to the environment.
 
-    . shell start
+    . shell.sh start
 
 ## Upgrade
 After pulling the more recent version of *cd-extended*, you can use the following command to complete the update.
@@ -55,12 +55,12 @@ After pulling the more recent version of *cd-extended*, you can use the followin
 
 Finally, make the shell take effect.
 
-    . shell start
+    . shell.sh start
 
 ## Uninstall
 You can first undo the environment setting after entering the repository directory, the *cd-extended* folder.
 
-    . shell stop
+    . shell.sh stop
 
 Next, remove the installed scripts and binaries from the environment.
 
