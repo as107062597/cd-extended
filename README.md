@@ -15,7 +15,7 @@ This is a project for Linux platform that makes changing directories more conven
 - This command helps the user to return to an even earlier working directory when using the ```pd``` command to go back to a previous working directory. It also allows the user to switch to a later visited working directory through options and parameters.
 
 ## Usage
-The commands ```pd``` and ```nd``` are similar to the *back* and *forward* buttons in a web browser, respectively. As their names suggest, they allow users to navigate through previously visited directories. Here are the usage and formats for them:
+The commands ```pd``` and ```nd``` are similar to the *back* and *forward* buttons in a web browser, respectively. As their names suggest, they allow users to navigate through previously visited directories. Here are the usage and formats for them.
 
 #### ```pd``` [NUMBER]
 - Switch the working directory to the *NUMBER*-th directory in reverse order. If *NUMBER* is not specified, go to the previous directory.
@@ -53,7 +53,7 @@ After pulling the more recent version of *cd-extended*, you can use the followin
 
     make upgrade
 
-Finally, make the shell take effect
+Finally, make the shell take effect.
 
     . shell start
 
