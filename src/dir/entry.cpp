@@ -26,11 +26,7 @@ time_t Entry::getTimestamp() const {
 
 std::string Entry::getTimestampFormat(const std::string format) const {
     char buffer[BUFFER_SIZE];
-    strftime(
-        buffer,
-        BUFFER_SIZE,
-        USER_SETTING_DIRECTORY_VISIT_TIME_FORMAT,
-        getTimeinfo());
+    formatTimeAsString(buffer, BUFFER_SIZE);
     return std::string { buffer };
 }
 
@@ -48,6 +44,15 @@ bool Entry::operator>(const Entry & that) const {
 
 bool Entry::operator==(const Entry & that) const {
     return timestamp == that.getTimestamp();
+}
+
+void Entry::formatTimeAsString(char * buffer, const int size) const {
+    strftime(
+        buffer,
+        size,
+        USER_SETTING_DIRECTORY_VISIT_TIME_FORMAT,
+        getTimeinfo()
+    );
 }
 
 struct tm * Entry::getTimeinfo() const {

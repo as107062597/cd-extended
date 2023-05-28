@@ -32,6 +32,8 @@ private:
 
     void setInstanceByEntryString(const std::string entryString);
 
+    void formatTimeAsString(char * buffer, const int size) const;
+
     struct tm * getTimeinfo() const;
 
     static bool isAbsolutePath(const std::string path);
