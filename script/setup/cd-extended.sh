@@ -21,10 +21,10 @@ mkdir -p $CDEXTENDED_HISTDIR
 if [ -f $DIRHIST_PATH ] && [ -r $DIRHIST_PATH ]; then
     echo $(wc -l < $DIRHIST_PATH) > $BRANCH_DIRHIST_PATH
     cat $DIRHIST_PATH >> $BRANCH_DIRHIST_PATH
-    pwd >> $BRANCH_DIRHIST_PATH
+    echo "$(date +%s%3N),$(pwd)" >> $BRANCH_DIRHIST_PATH
 else
     echo 0 > $BRANCH_DIRHIST_PATH
-    pwd >> $BRANCH_DIRHIST_PATH
+    echo "$(date +%s%3N),$(pwd)" >> $BRANCH_DIRHIST_PATH
 fi
 
 # declare aliases

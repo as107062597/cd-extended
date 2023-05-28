@@ -1,6 +1,8 @@
 TARGETS     = cd-shell.sh ex-shell.sh
+OLDTARGETS  = pd-shell.sh nd-shell.sh
 INSTDIR     = $(HOME)/.local/usr/opt/cd-extended
 INSTPATHS   = $(addprefix $(INSTDIR)/,$(basename $(TARGETS)))
+OLDPATHS    = $(addprefix $(INSTDIR)/,$(basename $(OLDTARGETS)))
 
 install: $(INSTPATHS)
 
@@ -9,5 +11,6 @@ $(INSTDIR)/%: %.sh
 
 uninstall:
 	for file in $(INSTPATHS); do rm -f $$file; done
+	for file in $(OLDPATHS); do rm -f $$file; done
 
 .PHONY: install uninstall
