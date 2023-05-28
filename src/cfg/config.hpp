@@ -22,4 +22,7 @@
 #define PKG_CFG_ARG_PRINT_INFO_ACTION \
         "print"
 
+#define PKG_CFG_DIRHIST_ENTRY_SEPARATOR \
+        ","
+
 #endif

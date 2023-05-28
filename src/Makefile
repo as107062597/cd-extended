@@ -1,5 +1,5 @@
 INCLUDES    = -I.
-LIBDIRS     =
+LIBDIRS     = dir
 LIBFILES    = $(addprefix lib,$(addsuffix .a,$(LIBDIRS)))
 LIBPATHS    = $(join $(addsuffix /,$(LIBDIRS)),$(LIBFILES))
 LDFLAGS     = $(addprefix -L,$(LIBDIRS))
