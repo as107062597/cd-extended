@@ -25,9 +25,6 @@
 #define PKG_CFG_DIRHIST_ENTRY_SEPARATOR \
         ","
 
-#define PKG_CFG_DATETIME_PATTERN_COUNT \
-        6
-
 #define PKG_CFG_DATETIME_STANDARD_CONVERSION_PATTERNS \
         { "yyyy", "MM", "dd", "HH", "mm", "ss" }
 
