@@ -5,9 +5,13 @@
 #define USER_SETTING_HISTORY_ENTRIES_COUNT \
         1000
 
+// using the standard conversion format
+#define USER_SETTING_USE_STANDARD_CONVERSION_FORMAT \
+        true
+
 // what format should the directory visit time be displayed on the screen
-#define USER_SETTING_DIRECTORY_VISIT_TIME_FORMAT \
-        "%Y-%m-%d %H:%M:%S"
+#define USER_SETTING_TIME_FORMAT \
+        "yyyy-MM-dd HH:mm:ss"
 
 // use the language of the current environment
 #define USER_SETTING_USE_CURRENT_ENV_LANG \

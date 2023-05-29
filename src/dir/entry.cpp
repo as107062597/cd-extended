@@ -3,7 +3,8 @@
 #include "settings.hpp"
 #include "cfg/config.hpp"
 
-#define BUFFER_SIZE 64
+#define ADDITIONAL_BUFFER_SPACE 4
+#define GET_BUFFER_SIZE_BY_FORMAT_LENGTH(x) (x + ADDITIONAL_BUFFER_SPACE)
 
 Entry::Entry(const std::string input) {
     if (isAbsolutePath(input)) {
@@ -25,8 +26,8 @@ time_t Entry::getTimestamp() const {
 }
 
 std::string Entry::getTimestampFormat(const std::string format) const {
-    char buffer[BUFFER_SIZE];
-    formatTimeAsString(buffer, BUFFER_SIZE);
+    char buffer[GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length())];
+    formatTimeAsString(buffer, format);
     return std::string { buffer };
 }
 
@@ -46,11 +47,13 @@ bool Entry::operator==(const Entry & that) const {
     return timestamp == that.getTimestamp();
 }
 
-void Entry::formatTimeAsString(char * buffer, const int size) const {
+void Entry::formatTimeAsString(char * buffer, const std::string format) const {
     strftime(
         buffer,
-        size,
-        USER_SETTING_DIRECTORY_VISIT_TIME_FORMAT,
+        GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length()),
+        USER_SETTING_USE_STANDARD_CONVERSION_FORMAT ?
+            toCStyleConversionFormat(std::string { format }).c_str() :
+            format.c_str(),
         getTimeinfo()
     );
 }
@@ -77,7 +80,7 @@ void Entry::setInstanceByEntryString(const std::string entryString) {
 
 time_t Entry::getCurrentTimestamp() {
     return static_cast< time_t >(
-        std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::duration_cast< std::chrono::milliseconds >(
             std::chrono::system_clock::now().time_since_epoch()
         ).count()
     );
@@ -95,4 +98,41 @@ std::string Entry::getPathByEntryString(const std::string entryString) {
     return entryString.substr(
         entryString.find(PKG_CFG_DIRHIST_ENTRY_SEPARATOR) + 1
     );
+}
+
+std::string Entry::toCStyleConversionFormat(
+    const std::string standardFormat
+) {
+    return replace(
+        standardFormat,
+        std::vector< std::string >
+            PKG_CFG_DATETIME_STANDARD_CONVERSION_PATTERNS,
+        std::vector< std::string >
+            PKG_CFG_DATETIME_C_STYLE_CONVERSION_PATTERNS
+    );
+}
+
+std::string Entry::replace(
+    const std::string source,
+    const std::vector< std::string > & substrings,
+    const std::vector< std::string > & newSubstrings
+) {
+    std::string output { source };
+    for (size_t i {0}; i != substrings.size(); i += 1) {
+        output = replace(output, substrings[i], newSubstrings[i]);
+    }
+    return output;
+}
+
+std::string Entry::replace(
+    const std::string source,
+    const std::string substring,
+    const std::string newSubstring
+) {
+    std::string output { source };
+    const size_t found { output.find(substring) };
+    if (found != std::string::npos) {
+        output.replace(found, substring.length(), newSubstring);
+    }
+    return output;
 }
