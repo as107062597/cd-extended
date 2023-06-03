@@ -1,10 +1,11 @@
 #include <chrono>
-#include "entry.hpp"
-#include "settings.hpp"
-#include "cfg/config.hpp"
+#include "dir/entry.hpp"
+#include "setting.hpp"
+#include "definition.hpp"
 
-#define ADDITIONAL_BUFFER_SPACE 4
-#define GET_BUFFER_SIZE_BY_FORMAT_LENGTH(x) (x + ADDITIONAL_BUFFER_SPACE)
+#define LOCAL_ADDITIONAL_BUFFER_SPACE 4
+#define LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(x) \
+        (x + LOCAL_ADDITIONAL_BUFFER_SPACE)
 
 Entry::Entry(const std::string input) {
     if (isAbsolutePath(input)) {
@@ -26,7 +27,7 @@ time_t Entry::getTimestamp() const {
 }
 
 std::string Entry::getTimestampFormat(const std::string format) const {
-    char buffer[GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length())];
+    char buffer[LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length())];
     formatTimeAsString(buffer, format);
     return std::string { buffer };
 }
@@ -50,7 +51,7 @@ bool Entry::operator==(const Entry & that) const {
 void Entry::formatTimeAsString(char * buffer, const std::string format) const {
     strftime(
         buffer,
-        GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length()),
+        LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length()),
         USER_SETTING_USE_STANDARD_CONVERSION_FORMAT ?
             toCStyleConversionFormat(std::string { format }).c_str() :
             format.c_str(),

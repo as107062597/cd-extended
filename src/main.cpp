@@ -11,14 +11,12 @@
 // }
 
 #include <iostream>
-#include "settings.hpp"
-#include "dir/entry.hpp"
-
+#include "tr/translator.hpp"
+#include "setting.hpp"
 using namespace std;
 
 int main(int argc, char * argv[]) {
-    Entry e { "/home/annie" };
-    cout << e.getTimestampFormat(USER_SETTING_TIME_FORMAT) << endl;
-    cout << e.getPath() << endl;
+    Translator t { USER_SETTING_LANG };
+    cout << t.tr(PHRASE_HELLO_WORLD) << endl;
     return 0;
 }
