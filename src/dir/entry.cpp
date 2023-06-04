@@ -1,7 +1,7 @@
 #include <chrono>
+#include "definition.hpp"
 #include "dir/entry.hpp"
 #include "setting.hpp"
-#include "definition.hpp"
 
 #define LOCAL_ADDITIONAL_BUFFER_SPACE 4
 #define LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(x) \
