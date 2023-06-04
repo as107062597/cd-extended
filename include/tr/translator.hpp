@@ -21,7 +21,7 @@ public:
 private:
     Language language;
 
-    Language getEnvironmentLanguage() const;
+    Language environmentLanguage() const;
 
     std::string toEnUs(const Phrase phrase) const;
 

@@ -1,6 +1,10 @@
 #ifndef __ERROR_HANDLER_HPP__
 #define __ERROR_HANDLER_HPP__
 
+#include <memory>
+
+class Error;
+
 class ErrorHandler {
 public:
     ~ErrorHandler();
@@ -11,10 +15,20 @@ public:
 
     static ErrorHandler & getInstance();
 
-    void handle(const std::runtime_error error);
+    void handle(std::exception & exception) const;
 
 private:
     ErrorHandler();
+
+    void handleCustomizeError(const Error & error) const;
+
+    void handleNativeException(const std::exception & exception) const;
+
+    void noisyExit(const std::exception & exception) const;
+
+    void quietExit() const;
+
+    bool isCustomizeError(std::exception & exception) const;
 
 };
 

@@ -13,7 +13,7 @@
         "unknown language"
 
 Translator::Translator() :
-    language { getEnvironmentLanguage() }
+    language { environmentLanguage() }
 {}
 
 Translator::Translator(const Language language) :
@@ -39,7 +39,7 @@ std::string Translator::translate(const Phrase phrase) const {
     }
 }
 
-Language Translator::getEnvironmentLanguage() const {
+Language Translator::environmentLanguage() const {
     return toLanguage(std::getenv(LOCAL_LANG_ENV_VAR_NAME));
 }
 

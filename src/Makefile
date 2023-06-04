@@ -1,7 +1,7 @@
 CXX         := g++
 CXXFLAGS    := -Wall -std=c++17 -lstdc++fs -Ofast
 CPPFLAGS    := -I.. -I../include
-SUBDIRS     := . .. tr dir
+SUBDIRS     := . .. tr err dir
 SOURCES     := $(foreach subdir,$(SUBDIRS),$(wildcard $(subdir)/*.cpp))
 OBJECTS     := $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      := dirctl
@@ -14,6 +14,6 @@ all: $(OBJECTS)
 
 clean:
 	rm -f $(TARGET)
-	rm -f $(addsuffix /*.o,$(SUBDIRS))
+	rm -f $(OBJECTS)
 
 .PHONY: all clean

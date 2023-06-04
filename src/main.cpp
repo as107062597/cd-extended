@@ -11,12 +11,20 @@
 // }
 
 #include <iostream>
-#include "tr/translator.hpp"
-#include "setting.hpp"
+#include "err/errorhandler.hpp"
+#include "err/error.hpp"
 using namespace std;
 
 int main(int argc, char * argv[]) {
-    Translator t { USER_SETTING_LANG };
-    cout << t.tr(PHRASE_HELLO_WORLD) << endl;
+    try {
+        cout << 1 << endl;
+        throw Error { ERROR_TYPE_RUNTIME_ERROR };
+        // throw std::runtime_error("hehe");
+        cout << 2 << endl;
+    } catch (std::exception & e) {
+        cout << 3 << endl;
+        ErrorHandler::getInstance().handle(e);
+        cout << 4 << endl;
+    }
     return 0;
 }

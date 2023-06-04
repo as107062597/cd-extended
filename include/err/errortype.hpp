@@ -2,6 +2,7 @@
 #define __ERROR_TYPE_HPP__
 
 enum ErrorType {
+    ERROR_TYPE_RUNTIME_ERROR,
     ERROR_TYPE_UNKNOWN
 };
 
