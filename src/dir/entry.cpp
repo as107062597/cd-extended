@@ -4,8 +4,8 @@
 #include "setting.hpp"
 
 #define LOCAL_ADDITIONAL_BUFFER_SPACE 4
-#define LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(x) \
-        (x + LOCAL_ADDITIONAL_BUFFER_SPACE)
+#define LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(size) \
+        (size + LOCAL_ADDITIONAL_BUFFER_SPACE)
 
 Entry::Entry(const std::string input) {
     if (isAbsolutePath(input)) {
