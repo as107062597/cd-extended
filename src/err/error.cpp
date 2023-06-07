@@ -13,6 +13,11 @@ Error::Error(const ErrorType errorType) :
     errorType { errorType }
 {}
 
+Error::Error(const ErrorType errorType, const std::string message) :
+    std::runtime_error { message },
+    errorType { errorType }
+{}
+
 ErrorType Error::type() const {
     return errorType;
 }
@@ -24,8 +29,8 @@ const char * Error::what() const noexcept {
 std::string Error::errorMessage(const ErrorType errorType) {
     switch (errorType) {
         case ERROR_TYPE_RUNTIME_ERROR:
-            return translator->tr(PHRASE_RUNTIME_ERROR);
+            return translator->tr(PHRASE_DEFAULT_RUNTIME_ERROR_MESSAGE);
         default:
-            return translator->tr(PHRASE_UNKNOWN_ERROR);
+            return translator->tr(PHRASE_DEFAULT_UNKNOWN_ERROR_MESSAGE);
     }
 }

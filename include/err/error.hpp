@@ -11,6 +11,8 @@ class Error : public std::runtime_error {
 public:
     explicit Error(const ErrorType errorType);
 
+    explicit Error(const ErrorType errorType, const std::string message);
+
     ErrorType type() const;
 
     const char * what() const noexcept override;

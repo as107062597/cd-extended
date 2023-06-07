@@ -1,9 +1,11 @@
 #ifndef __EXECUTOR_INFO_HPP__
 #define __EXECUTOR_INFO_HPP__
 
+#include <memory>
 #include <string>
 #include "executionaction.hpp"
 #include "executionmode.hpp"
+#include "tr/translator.hpp"
 
 class ExecutorInfo {
 public:
@@ -45,6 +47,8 @@ public:
 
     ExecutorInfo & setBeforeTimestamp(const std::string timeString);
 
+    ExecutorInfo & setName(const std::string name);
+
 private:
     ExecutionAction executionAction;
 
@@ -65,6 +69,16 @@ private:
     long long afterTimestamp;
 
     long long beforeTimestamp;
+
+    std::string name;
+
+    static std::unique_ptr< Translator > translator;
+
+    std::string getMessageHeader() const;
+
+    std::string attachHeader(const std::string message) const;
+
+    std::string generateMessage(const Phrase phrase) const;
 
     void assert() const;
 

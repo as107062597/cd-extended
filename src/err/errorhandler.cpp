@@ -22,7 +22,6 @@ void ErrorHandler::handle(std::exception & exception) const {
 
 void ErrorHandler::handleCustomizeError(const Error & error) const {
     switch (error.type()) {
-        case ERROR_TYPE_RUNTIME_ERROR:
         default:
             noisyExit(error);
     }

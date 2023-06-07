@@ -1,5 +1,7 @@
 #include <climits>
 #include "dir/executorinfo.hpp"
+#include "err/error.hpp"
+#include "setting.hpp"
 
 #define DEFAULT_EXECUTION_ACTION    ACTION_NONE
 #define DEFAULT_EXECUTION_MODE      MODE_NONE
@@ -11,6 +13,14 @@
 #define DEFAULT_LIST_SIZE           0
 #define DEFAULT_AFTER_TIMESTAMP     0
 #define DEFAULT_BEFORE_TIMESTAMP    LLONG_MAX
+#define DEFAULT_NAME                "dirctl"
+#define MESSAGE_HEADER_SIGN         ": "
+
+std::unique_ptr< Translator > ExecutorInfo::translator (
+    USER_SETTING_USE_CURRENT_ENV_LANG ?
+        std::make_unique< Translator >() :
+        std::make_unique< Translator >(USER_SETTING_LANG)
+);
 
 ExecutorInfo::ExecutorInfo() :
     executionAction { DEFAULT_EXECUTION_ACTION },
@@ -22,7 +32,8 @@ ExecutorInfo::ExecutorInfo() :
     number          { DEFAULT_NUMBER },
     listSize        { DEFAULT_LIST_SIZE },
     afterTimestamp  { DEFAULT_AFTER_TIMESTAMP },
-    beforeTimestamp { DEFAULT_BEFORE_TIMESTAMP }
+    beforeTimestamp { DEFAULT_BEFORE_TIMESTAMP },
+    name            { DEFAULT_NAME }
 {}
 
 ExecutorInfo::~ExecutorInfo() {}
@@ -30,7 +41,14 @@ ExecutorInfo::~ExecutorInfo() {}
 ExecutorInfo & ExecutorInfo::setExecutionAction(
     const ExecutionAction executionAction
 ) {
-    this->executionAction = executionAction;
+    if (executionAction != ACTION_NONE && executionAction != ACTION_COUNT) {
+        this->executionAction = executionAction;
+    } else {
+        throw Error(
+            ERROR_TYPE_RUNTIME_ERROR,
+            generateMessage(PHRASE_ERROR_MESSAGE_INVALID_EXECUTION_ACTION)
+        );
+    }
     return * this;
 }
 
@@ -113,6 +131,23 @@ ExecutorInfo & ExecutorInfo::setBeforeTimestamp(
 
 ExecutorInfo & ExecutorInfo::setBeforeTimestamp(const std::string timeString) {
     return * this;
+}
+
+ExecutorInfo & ExecutorInfo::setName(const std::string name) {
+    this->name = name;
+    return * this;
+}
+
+std::string ExecutorInfo::getMessageHeader() const {
+    return name + MESSAGE_HEADER_SIGN;
+}
+
+std::string ExecutorInfo::attachHeader(const std::string message) const {
+    return getMessageHeader() + message;
+}
+
+std::string ExecutorInfo::generateMessage(const Phrase phrase) const {
+    return attachHeader(translator->tr(phrase));
 }
 
 void ExecutorInfo::assert() const {

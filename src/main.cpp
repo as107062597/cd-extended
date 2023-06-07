@@ -13,13 +13,14 @@
 #include <iostream>
 #include "err/errorhandler.hpp"
 #include "err/error.hpp"
+#include "dir/executorinfo.hpp"
 using namespace std;
 
 int main(int argc, char * argv[]) {
     try {
-        cout << 1 << endl;
-        throw Error { ERROR_TYPE_RUNTIME_ERROR };
-        // throw std::runtime_error("hehe");
+        ExecutorInfo info;
+        info.setName("pd");
+        info.setExecutionAction(ACTION_COUNT);
         cout << 2 << endl;
     } catch (std::exception & e) {
         cout << 3 << endl;
