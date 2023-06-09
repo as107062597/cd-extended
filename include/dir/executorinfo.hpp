@@ -33,21 +33,21 @@ public:
 
     ExecutorInfo & setVersionOption(const bool versionOption);
 
-    ExecutorInfo & setNumber(const bool number);
+    ExecutorInfo & setNumber(const int number);
 
     ExecutorInfo & setListSize();
 
     ExecutorInfo & setListSize(const int listSize);
 
-    ExecutorInfo & setAfterTimestamp(const long long afterTimestamp);
+    ExecutorInfo & setAfterTimestamp(const time_t afterTimestamp);
 
-    ExecutorInfo & setAfterTimestamp(const std::string timeString);
+    ExecutorInfo & setAfterTimestamp(const std::string & timeString);
 
-    ExecutorInfo & setBeforeTimestamp(const long long beforeTimestamp);
+    ExecutorInfo & setBeforeTimestamp(const time_t beforeTimestamp);
 
-    ExecutorInfo & setBeforeTimestamp(const std::string timeString);
+    ExecutorInfo & setBeforeTimestamp(const std::string & timeString);
 
-    ExecutorInfo & setName(const std::string name);
+    ExecutorInfo & setName(const std::string & name);
 
 private:
     ExecutionAction executionAction;
@@ -66,21 +66,37 @@ private:
 
     int listSize;
 
-    long long afterTimestamp;
+    time_t afterTimestamp;
 
-    long long beforeTimestamp;
+    time_t beforeTimestamp;
 
     std::string name;
 
     static std::unique_ptr< Translator > translator;
 
+    void assert() const;
+
+    void throwError(const Phrase phrase) const;
+
+    void throwErrorWithHelpExample(const Phrase phrase) const;
+
+    void throwError(const Phrase phrase, const bool showHelp) const;
+
     std::string getMessageHeader() const;
 
-    std::string attachHeader(const std::string message) const;
+    std::string attachHeader(const std::string & message) const;
 
     std::string generateMessage(const Phrase phrase) const;
 
-    void assert() const;
+    std::string generateMessageWithHelpExample(const Phrase phrase) const;
+
+    std::string getShowHelpExample() const;
+
+    static bool isDuration(const std::string & timeString);
+
+    static time_t getTimestampByDuration(const std::string & duration);
+
+    static time_t getTimestampByIso8601(const std::string & iso8601);
 
 };
 

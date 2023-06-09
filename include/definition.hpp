@@ -29,6 +29,6 @@
         { "yyyy", "MM", "dd", "HH", "mm", "ss" }
 
 #define PKG_CFG_DATETIME_C_STYLE_CONVERSION_PATTERNS \
-        { "\%Y", "\%m", "\%d", "\%H", "\%M", "\%S" }
+        { R"(%Y)", R"(%m)", R"(%d)", R"(%H)", R"(%M)", R"(%S)" }
 
 #endif

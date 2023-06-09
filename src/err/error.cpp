@@ -13,7 +13,7 @@ Error::Error(const ErrorType errorType) :
     errorType { errorType }
 {}
 
-Error::Error(const ErrorType errorType, const std::string message) :
+Error::Error(const ErrorType errorType, const std::string & message) :
     std::runtime_error { message },
     errorType { errorType }
 {}

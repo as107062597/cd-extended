@@ -20,7 +20,7 @@ Translator::Translator(const Language language) :
     language { language }
 {}
 
-Translator::Translator(const std::string language) :
+Translator::Translator(const std::string & language) :
     language { toLanguage(language) }
 {}
 
@@ -44,15 +44,15 @@ Language Translator::environmentLanguage() const {
 }
 
 bool Translator::isPrefix(
-    const std::string reference,
-    const std::string prefix
+    const std::string & reference,
+    const std::string & prefix
 ) {
     return !reference.find(prefix);
 }
 
 bool Translator::isPrefix(
-    const std::string reference,
-    const std::vector< std::string > prefixes
+    const std::string & reference,
+    const std::vector< std::string > & prefixes
 ) {
     bool ret { false };
     for (std::string prefix : prefixes) {
@@ -63,21 +63,21 @@ bool Translator::isPrefix(
     return ret;
 }
 
-bool Translator::isEnUs(const std::string languageString) {
+bool Translator::isEnUs(const std::string & languageString) {
     return isPrefix(
         languageString,
         std::vector< std::string > LOCAL_EN_US_LANG_PREFIXES
     );
 }
 
-bool Translator::isZhTw(const std::string languageString) {
+bool Translator::isZhTw(const std::string & languageString) {
     return isPrefix(
         languageString,
         std::vector< std::string > LOCAL_ZH_TW_LANG_PREFIXES
     );
 }
 
-Language Translator::toLanguage(const std::string languageString) {
+Language Translator::toLanguage(const std::string & languageString) {
     if (isEnUs(languageString)) {
         return LANGUAGE_EN_US;
     } else if (isZhTw(languageString)) {

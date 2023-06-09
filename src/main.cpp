@@ -20,7 +20,7 @@ int main(int argc, char * argv[]) {
     try {
         ExecutorInfo info;
         info.setName("pd");
-        info.setExecutionAction(ACTION_COUNT);
+        info.setAfterTimestamp("");
         cout << 2 << endl;
     } catch (std::exception & e) {
         cout << 3 << endl;

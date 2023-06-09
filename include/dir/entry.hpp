@@ -6,15 +6,15 @@
 
 class Entry {
 public:
-    explicit Entry(const std::string input);
+    explicit Entry(const std::string & input);
 
-    explicit Entry(const time_t timestamp, const std::string path);
+    explicit Entry(const time_t timestamp, const std::string & path);
 
     ~Entry();
 
     time_t getTimestamp() const;
 
-    std::string getTimestampFormat(const std::string format) const;
+    std::string getTimestampFormat(const std::string & format) const;
 
     std::string getPath() const;
 
@@ -29,36 +29,36 @@ private:
 
     std::string path;
 
-    void setInstanceByPath(const std::string path);
+    void setInstanceByPath(const std::string & path);
 
-    void setInstanceByEntryString(const std::string entryString);
+    void setInstanceByEntryString(const std::string & entryString);
 
-    void formatTimeAsString(char * buffer, const std::string format) const;
+    void formatTimeAsString(char * buffer, const std::string & format) const;
 
     struct tm * getTimeinfo() const;
 
-    static bool isAbsolutePath(const std::string path);
+    static bool isAbsolutePath(const std::string & path);
 
     static time_t getCurrentTimestamp();
 
-    static time_t getTimestampByEntryString(const std::string entryString);
+    static time_t getTimestampByEntryString(const std::string & entryString);
 
-    static std::string getPathByEntryString(const std::string entryString);
+    static std::string getPathByEntryString(const std::string & entryString);
 
     static std::string toCStyleConversionFormat(
-        const std::string standardFormat
+        const std::string & standardFormat
     );
 
     static std::string replace(
-        const std::string source,
+        const std::string & source,
         const std::vector< std::string > & substrings,
         const std::vector< std::string > & newSubstrings
     );
 
     static std::string replace(
-        const std::string source,
-        const std::string substring,
-        const std::string newSubstring
+        const std::string & source,
+        const std::string & substring,
+        const std::string & newSubstring
     );
 
 };

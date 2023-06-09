@@ -7,7 +7,7 @@
 #define LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(size) \
         (size + LOCAL_ADDITIONAL_BUFFER_SPACE)
 
-Entry::Entry(const std::string input) {
+Entry::Entry(const std::string & input) {
     if (isAbsolutePath(input)) {
         setInstanceByPath(input);
     } else {
@@ -15,7 +15,7 @@ Entry::Entry(const std::string input) {
     }
 }
 
-Entry::Entry(const time_t timestamp, const std::string path) :
+Entry::Entry(const time_t timestamp, const std::string & path) :
     timestamp { timestamp },
     path { path }
 {}
@@ -26,7 +26,7 @@ time_t Entry::getTimestamp() const {
     return timestamp;
 }
 
-std::string Entry::getTimestampFormat(const std::string format) const {
+std::string Entry::getTimestampFormat(const std::string & format) const {
     char buffer[LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length())];
     formatTimeAsString(buffer, format);
     return std::string { buffer };
@@ -48,7 +48,9 @@ bool Entry::operator==(const Entry & that) const {
     return timestamp == that.getTimestamp();
 }
 
-void Entry::formatTimeAsString(char * buffer, const std::string format) const {
+void Entry::formatTimeAsString(
+    char * buffer, const std::string & format
+) const {
     strftime(
         buffer,
         LOCAL_GET_BUFFER_SIZE_BY_FORMAT_LENGTH(format.length()),
@@ -65,16 +67,16 @@ struct tm * Entry::getTimeinfo() const {
     return localtime(&timestampCopy);
 }
 
-bool Entry::isAbsolutePath(const std::string path) {
+bool Entry::isAbsolutePath(const std::string & path) {
     return path.length() && path[0] == '/';
 }
 
-void Entry::setInstanceByPath(const std::string path) {
+void Entry::setInstanceByPath(const std::string & path) {
     timestamp = getCurrentTimestamp();
     this->path = path;
 }
 
-void Entry::setInstanceByEntryString(const std::string entryString) {
+void Entry::setInstanceByEntryString(const std::string & entryString) {
     timestamp = getTimestampByEntryString(entryString);
     path = getPathByEntryString(entryString);
 }
@@ -87,7 +89,7 @@ time_t Entry::getCurrentTimestamp() {
     );
 }
 
-time_t Entry::getTimestampByEntryString(const std::string entryString) {
+time_t Entry::getTimestampByEntryString(const std::string & entryString) {
     return static_cast< time_t >(std::stoll(
         entryString.substr(
             0, entryString.find(PKG_CFG_DIRHIST_ENTRY_SEPARATOR)
@@ -95,14 +97,14 @@ time_t Entry::getTimestampByEntryString(const std::string entryString) {
     ));
 }
 
-std::string Entry::getPathByEntryString(const std::string entryString) {
+std::string Entry::getPathByEntryString(const std::string & entryString) {
     return entryString.substr(
         entryString.find(PKG_CFG_DIRHIST_ENTRY_SEPARATOR) + 1
     );
 }
 
 std::string Entry::toCStyleConversionFormat(
-    const std::string standardFormat
+    const std::string & standardFormat
 ) {
     return replace(
         standardFormat,
@@ -114,7 +116,7 @@ std::string Entry::toCStyleConversionFormat(
 }
 
 std::string Entry::replace(
-    const std::string source,
+    const std::string & source,
     const std::vector< std::string > & substrings,
     const std::vector< std::string > & newSubstrings
 ) {
@@ -126,9 +128,9 @@ std::string Entry::replace(
 }
 
 std::string Entry::replace(
-    const std::string source,
-    const std::string substring,
-    const std::string newSubstring
+    const std::string & source,
+    const std::string & substring,
+    const std::string & newSubstring
 ) {
     std::string output { source };
     const size_t found { output.find(substring) };

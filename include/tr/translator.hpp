@@ -12,7 +12,7 @@ public:
 
     explicit Translator(const Language language);
 
-    explicit Translator(const std::string language);
+    explicit Translator(const std::string & language);
 
     std::string tr(const Phrase phrase) const;
 
@@ -28,20 +28,20 @@ private:
     std::string toZhTw(const Phrase phrase) const;
 
     static bool isPrefix(
-        const std::string reference,
-        const std::string prefix
+        const std::string & reference,
+        const std::string & prefix
     );
 
     static bool isPrefix(
-        const std::string reference,
-        const std::vector< std::string > prefixes
+        const std::string & reference,
+        const std::vector< std::string > & prefixes
     );
 
-    static bool isEnUs(const std::string languageString);
+    static bool isEnUs(const std::string & languageString);
 
-    static bool isZhTw(const std::string languageString);
+    static bool isZhTw(const std::string & languageString);
 
-    static Language toLanguage(const std::string languageString);
+    static Language toLanguage(const std::string & languageString);
 
 };
 

@@ -5,7 +5,8 @@ enum ExecutionMode {
     MODE_SWITCH,
     MODE_BACKWARD,
     MODE_FORWARD,
-    MODE_NONE
+    MODE_NONE,
+    MODE_COUNT
 };
 
 #endif

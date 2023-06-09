@@ -14,7 +14,10 @@
 #define DEFAULT_AFTER_TIMESTAMP     0
 #define DEFAULT_BEFORE_TIMESTAMP    LLONG_MAX
 #define DEFAULT_NAME                "dirctl"
+#define NEW_LINE                    "\n"
 #define MESSAGE_HEADER_SIGN         ": "
+#define IS_DURATION_REGEX           ""
+#define GET_DURATION_REGEX          R"(\d+[DdHhMmSs])"
 
 std::unique_ptr< Translator > ExecutorInfo::translator (
     USER_SETTING_USE_CURRENT_ENV_LANG ?
@@ -44,10 +47,7 @@ ExecutorInfo & ExecutorInfo::setExecutionAction(
     if (executionAction != ACTION_NONE && executionAction != ACTION_COUNT) {
         this->executionAction = executionAction;
     } else {
-        throw Error(
-            ERROR_TYPE_RUNTIME_ERROR,
-            generateMessage(PHRASE_ERROR_MESSAGE_INVALID_EXECUTION_ACTION)
-        );
+        throwError(PHRASE_ERROR_MESSAGE_INVALID_EXECUTION_ACTION);
     }
     return * this;
 }
@@ -55,7 +55,11 @@ ExecutorInfo & ExecutorInfo::setExecutionAction(
 ExecutorInfo & ExecutorInfo::setExecutionMode(
     const ExecutionMode executionMode
 ) {
-    this->executionMode = executionMode;
+    if (executionMode != MODE_NONE && executionMode != MODE_COUNT) {
+        this->executionMode = executionMode;
+    } else {
+        throwError(PHRASE_ERROR_MESSAGE_INVALID_EXECUTION_MODE);
+    }
     return * this;
 }
 
@@ -95,8 +99,12 @@ ExecutorInfo & ExecutorInfo::setVersionOption(const bool versionOption) {
     return * this;
 }
 
-ExecutorInfo & ExecutorInfo::setNumber(const bool number) {
-    this->number = number;
+ExecutorInfo & ExecutorInfo::setNumber(const int number) {
+    if (number >= 1) {
+        this->number = number;
+    } else {
+        throwErrorWithHelpExample(PHRASE_ERROR_MESSAGE_INVALID_NUMBER_OPTION);
+    }
     return * this;
 }
 
@@ -105,44 +113,85 @@ ExecutorInfo & ExecutorInfo::setListSize() {
 }
 
 ExecutorInfo & ExecutorInfo::setListSize(const int listSize) {
-    this->listSize = listSize;
+    if (listSize >= 1) {
+        this->listSize = listSize;
+    } else {
+        throwErrorWithHelpExample(PHRASE_ERROR_MESSAGE_INVALID_LIST_OPTION);
+    }
+    return * this;
+}
+
+ExecutorInfo & ExecutorInfo::setAfterTimestamp(const time_t afterTimestamp) {
+    if (afterTimestamp >= 0) {
+        this->afterTimestamp = afterTimestamp;
+    } else {
+        throwError(PHRASE_ERROR_MESSAGE_INVALID_TIMESTAMP);
+    }
     return * this;
 }
 
 ExecutorInfo & ExecutorInfo::setAfterTimestamp(
-    const long long afterTimestamp
+    const std::string & timeString
 ) {
-    this->afterTimestamp = afterTimestamp;
+    setAfterTimestamp(
+        isDuration(timeString) ?
+            getTimestampByDuration(timeString) :
+            getTimestampByIso8601(timeString)
+    );
     return * this;
 }
 
-ExecutorInfo & ExecutorInfo::setAfterTimestamp(
-    const std::string timeString
-) {
+ExecutorInfo & ExecutorInfo::setBeforeTimestamp(const time_t beforeTimestamp) {
+    if (beforeTimestamp >= 0) {
+        this->beforeTimestamp = beforeTimestamp;
+    } else {
+        throwError(PHRASE_ERROR_MESSAGE_INVALID_TIMESTAMP);
+    }
     return * this;
 }
 
 ExecutorInfo & ExecutorInfo::setBeforeTimestamp(
-    const long long beforeTimestamp
+    const std::string & timeString
 ) {
-    this->beforeTimestamp = beforeTimestamp;
+    setBeforeTimestamp(
+        isDuration(timeString) ?
+            getTimestampByDuration(timeString) :
+            getTimestampByIso8601(timeString)
+    );
     return * this;
 }
 
-ExecutorInfo & ExecutorInfo::setBeforeTimestamp(const std::string timeString) {
-    return * this;
-}
-
-ExecutorInfo & ExecutorInfo::setName(const std::string name) {
+ExecutorInfo & ExecutorInfo::setName(const std::string & name) {
     this->name = name;
     return * this;
+}
+
+void ExecutorInfo::assert() const {
+
+}
+
+void ExecutorInfo::throwError(const Phrase phrase) const {
+    throwError(phrase, false);
+}
+
+void ExecutorInfo::throwErrorWithHelpExample(const Phrase phrase) const {
+    throwError(phrase, true);
+}
+
+void ExecutorInfo::throwError(const Phrase phrase, const bool showHelp) const {
+    throw Error(
+        ERROR_TYPE_RUNTIME_ERROR,
+        showHelp ?
+            generateMessageWithHelpExample(phrase) :
+            generateMessage(phrase)
+    );
 }
 
 std::string ExecutorInfo::getMessageHeader() const {
     return name + MESSAGE_HEADER_SIGN;
 }
 
-std::string ExecutorInfo::attachHeader(const std::string message) const {
+std::string ExecutorInfo::attachHeader(const std::string & message) const {
     return getMessageHeader() + message;
 }
 
@@ -150,6 +199,31 @@ std::string ExecutorInfo::generateMessage(const Phrase phrase) const {
     return attachHeader(translator->tr(phrase));
 }
 
-void ExecutorInfo::assert() const {
+std::string ExecutorInfo::generateMessageWithHelpExample(
+    const Phrase phrase
+) const {
+    return generateMessage(phrase) + NEW_LINE + getShowHelpExample();
+}
 
+std::string ExecutorInfo::getShowHelpExample() const {
+    return translator->tr(PHRASE_MESSAGE_HELP_EXAMPLE_PART_1)
+        + name
+        + translator->tr(PHRASE_MESSAGE_HELP_EXAMPLE_PART_2);
+}
+
+bool ExecutorInfo::isDuration(const std::string & timeString) {
+    for (char letter : TIME_UNITS) {
+        if (timeString.find_first_of(letter) != std::string::npos) {
+            return true;
+        }
+    }
+    return false;
+}
+
+time_t ExecutorInfo::getTimestampByDuration(const std::string & duration) {
+    return 1;
+}
+
+time_t ExecutorInfo::getTimestampByIso8601(const std::string & iso8601) {
+    return -1;
 }
