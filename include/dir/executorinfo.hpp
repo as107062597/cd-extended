@@ -5,7 +5,7 @@
 #include <string>
 #include "executionaction.hpp"
 #include "executionmode.hpp"
-#include "tr/translator.hpp"
+#include "translator.hpp"
 
 class ExecutorInfo {
 public:

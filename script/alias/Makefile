@@ -1,5 +1,5 @@
-TARGETS     = cd-shell.sh ex-shell.sh
-OLDTARGETS  = pd-shell.sh nd-shell.sh
+TARGETS     = cd-shell.sh sd-shell.sh
+OLDTARGETS  = ex-shell.sh pd-shell.sh nd-shell.sh
 INSTDIR     = $(HOME)/.local/usr/opt/cd-extended
 INSTPATHS   = $(addprefix $(INSTDIR)/,$(basename $(TARGETS)))
 OLDPATHS    = $(addprefix $(INSTDIR)/,$(basename $(OLDTARGETS)))

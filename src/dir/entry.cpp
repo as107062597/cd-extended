@@ -1,6 +1,6 @@
 #include <chrono>
 #include "definition.hpp"
-#include "dir/entry.hpp"
+#include "entry.hpp"
 #include "setting.hpp"
 
 #define LOCAL_ADDITIONAL_BUFFER_SPACE 4

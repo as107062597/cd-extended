@@ -3,8 +3,8 @@
 
 #include <string>
 #include <vector>
-#include "tr/language.hpp"
-#include "tr/phrase.hpp"
+#include "language.hpp"
+#include "phrase.hpp"
 
 class Translator {
 public:

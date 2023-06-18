@@ -1,6 +1,6 @@
 #include <climits>
-#include "dir/executorinfo.hpp"
-#include "err/error.hpp"
+#include "executorinfo.hpp"
+#include "error.hpp"
 #include "setting.hpp"
 
 #define DEFAULT_EXECUTION_ACTION    ACTION_NONE
@@ -212,11 +212,11 @@ std::string ExecutorInfo::getShowHelpExample() const {
 }
 
 bool ExecutorInfo::isDuration(const std::string & timeString) {
-    for (char letter : TIME_UNITS) {
-        if (timeString.find_first_of(letter) != std::string::npos) {
-            return true;
-        }
-    }
+    // for (char letter : TIME_UNITS) {
+    //     if (timeString.find_first_of(letter) != std::string::npos) {
+    //         return true;
+    //     }
+    // }
     return false;
 }
 

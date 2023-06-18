@@ -1,4 +1,4 @@
-#include "tr/translator.hpp"
+#include "translator.hpp"
 
 std::string Translator::toZhTw(const Phrase phrase) const {
     switch (phrase) {

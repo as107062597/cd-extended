@@ -3,23 +3,11 @@
 
 # set varables
 CDEXTENDED_DIRCTL="$HOME/.local/usr/opt/cd-extended/dirctl"
-CDEXTENDED_CTLPRT='print'
-CDEXTENDED_CTLEXEC='exec'
+CDEXTENDED_EXEMODE='switch'
+CDEXTENDED_DISPACT='disp'
+CDEXTENDED_EXECACT='exec'
 CDEXTENDED_NAME=$1
 shift
-
-# set execution mode for dirhist
-case $CDEXTENDED_NAME in
-    'pd')
-        CDEXTENDED_EXEMODE='backward'
-        ;;
-    'nd')
-        CDEXTENDED_EXEMODE='forward'
-        ;;
-    *)
-        CDEXTENDED_EXEMODE='none'
-        ;;
-esac
 
 # detect if the verbose option is present
 CDEXTENDED_VFLAG=0
@@ -36,9 +24,10 @@ if [ -f $BRANCH_DIRHIST_PATH ] && [ -r $BRANCH_DIRHIST_PATH ] &&
     [ -f $CDEXTENDED_DIRCTL ] && [ -x $CDEXTENDED_DIRCTL ];
 then
     CDEXTENDED_SOURCE=$(pwd)
-    CDEXTENDED_DEST=$($CDEXTENDED_DIRCTL $CDEXTENDED_EXEMODE \
-        $CDEXTENDED_CTLPRT $BRANCH_DIRHIST_PATH \
-        $CDEXTENDED_NAME $@\)
+    CDEXTENDED_DEST=$(
+        $CDEXTENDED_DIRCTL $CDEXTENDED_EXEMODE $CDEXTENDED_DISPACT \
+            $BRANCH_DIRHIST_PATH $CDEXTENDED_NAME $@
+    )
     CDEXTENDED_EXITSTAT=$?
 
     if [ $CDEXTENDED_EXITSTAT -eq 0 ]; then
@@ -49,12 +38,10 @@ then
             if [ $CDEXTENDED_EXITSTAT -eq 0 ]; then
                 if [ $CDEXTENDED_VFLAG -eq 1 ]; then
                     echo $CDEXTENDED_DEST
-                else
-                    $CDEXTENDED_DIRCTL $CDEXTENDED_EXEMODE \
-                        $CDEXTENDED_CTLEXEC $BRANCH_DIRHIST_PATH \
-                        $CDEXTENDED_SOURCE $CDEXTENDED_DEST \
-                        $CDEXTENDED_NAME $@ >/dev/null 2>&1
                 fi
+                $CDEXTENDED_DIRCTL $CDEXTENDED_EXEMODE $CDEXTENDED_EXECACT \
+                    $BRANCH_DIRHIST_PATH $CDEXTENDED_SOURCE $CDEXTENDED_DEST \
+                    $CDEXTENDED_NAME $@ >/dev/null 2>&1
             fi
         else
             echo "$CDEXTENDED_DEST"
@@ -64,10 +51,10 @@ fi
 
 # unset variables
 unset CDEXTENDED_DIRCTL
-unset CDEXTENDED_CTLPRT
-unset CDEXTENDED_CTLEXEC
-unset CDEXTENDED_NAME
 unset CDEXTENDED_EXEMODE
+unset CDEXTENDED_DISPACT
+unset CDEXTENDED_EXECACT
+unset CDEXTENDED_NAME
 unset CDEXTENDED_VFLAG
 unset CDEXTENDED_SOURCE
 unset CDEXTENDED_DEST

@@ -1,7 +1,7 @@
 CXX         := g++
 CXXFLAGS    := -Wall -std=c++17 -lstdc++fs -Ofast
-CPPFLAGS    := -I.. -I../include
-SUBDIRS     := . .. tr err dir
+CPPFLAGS    := -I../include -I../include/utils -I../include/dir
+SUBDIRS     := . utils dir
 SOURCES     := $(foreach subdir,$(SUBDIRS),$(wildcard $(subdir)/*.cpp))
 OBJECTS     := $(patsubst %.cpp,%.o,$(SOURCES))
 TARGET      := dirctl

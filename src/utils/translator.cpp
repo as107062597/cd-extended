@@ -1,4 +1,4 @@
-#include "tr/translator.hpp"
+#include "translator.hpp"
 
 #define LOCAL_LANG_ENV_VAR_NAME \
         "LANG"

@@ -1,4 +1,4 @@
-#include "tr/translator.hpp"
+#include "translator.hpp"
 
 std::string Translator::toEnUs(const Phrase phrase) const {
     switch (phrase) {

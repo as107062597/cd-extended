@@ -1,6 +1,6 @@
 #include <iostream>
-#include "err/errorhandler.hpp"
-#include "err/error.hpp"
+#include "errorhandler.hpp"
+#include "error.hpp"
 #include "setting.hpp"
 
 ErrorHandler::ErrorHandler() {}

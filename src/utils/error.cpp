@@ -1,6 +1,6 @@
-#include "err/error.hpp"
+#include "error.hpp"
 #include "setting.hpp"
-#include "tr/translator.hpp"
+#include "translator.hpp"
 
 std::unique_ptr< Translator > Error::translator (
     USER_SETTING_USE_CURRENT_ENV_LANG ?

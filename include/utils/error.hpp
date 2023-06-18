@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include "err/errortype.hpp"
+#include "errortype.hpp"
 
 class Translator;
 
